@@ -1,28 +1,21 @@
-{
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+module.exports = {
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
-  "extends": [
-    "plugin:react/recommended",
-    "airbnb",
-    "prettier"
-  ],
-  "plugins": [
-    "react",
-    "prettier"
-  ]
-}
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  plugins: ['react', 'prettier'],
+};
