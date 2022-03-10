@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import PlusIcon from '../atoms/PlusIcon';
+import PlusIcon from '../icons/PlusIcon';
 
 export default function () {
   return (
