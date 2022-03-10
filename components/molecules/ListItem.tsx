@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import HeartIcon from '../atoms/HeartIcon';
-import EditIcon from '../atoms/EditIcon';
-import DeleteIcon from '../atoms/DeleteIcon';
-import HeratIconFilled from '../atoms/HeratIconFilled';
+import HeartIcon from '../icons/HeartIcon';
+import EditIcon from '../icons/EditIcon';
+import DeleteIcon from '../icons/DeleteIcon';
+import HeratIconFilled from '../icons/HeratIconFilled';
 import Link from 'next/link';
 
 interface Props {
   contactPicture: string;
   contactText: string;
   contactId: string;
+  contactFav: boolean;
 }
 
 export default function ListItem({
   contactPicture,
   contactText,
   contactId,
+  contactFav,
 }: Props) {
-  const [fav, setFav] = useState(false);
+  const [fav, setFav] = useState(contactFav);
 
   return (
     <div className='border border-solid rounded-md border-typeqast-blue w-listItem h-listItem p-3 m-4'>
