@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
 import HeartIcon from '../icons/HeartIcon';
 import EditIcon from '../icons/EditIcon';
@@ -19,15 +19,25 @@ export default function ListItem({
   contactId,
   contactFav,
 }: Props) {
-  const [fav, setFav] = useState(contactFav);
+  const [isHovered, setIsHovered] = useState(false);
 
+  const onMouseEnter = useCallback(() => {
+    setIsHovered(true);
+  }, [setIsHovered]);
+  const onMouseLeave = useCallback(() => {
+    setIsHovered(false);
+  }, [setIsHovered]);
   return (
-    <div className='border border-solid rounded-md border-typeqast-blue w-listItem h-listItem p-3 m-4'>
-      <div className='flex justify-between'>
+    <div
+      className={`border border-solid rounded-md border-typeqast-gray' hover:border-typeqast-blue w-listItem h-listItem p-3 m-4`}
+    >
+      <div
+        className='flex justify-between'
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
         <div className='column itemCol15'>
-          <span onClick={() => setFav(!fav)}>
-            {fav ? <HeratIconFilled /> : <HeartIcon />}
-          </span>
+          {contactFav ? <HeratIconFilled /> : <HeartIcon />}
         </div>
         <Link href={`/info/${contactId}`}>
           <div className='column itemCol60'>
@@ -45,18 +55,24 @@ export default function ListItem({
           </div>
         </Link>
         <div className='column itemCol25'>
-          <div className='flex'>
-            <Link href='/edit' passHref>
-              <span>
-                <EditIcon />
-              </span>
-            </Link>
-            <Link href='/delete' passHref>
-              <span>
-                <DeleteIcon />
-              </span>
-            </Link>
-          </div>
+          {isHovered ? (
+            <div className='flex'>
+              <>
+                <Link href='/edit' passHref>
+                  <span>
+                    <EditIcon />
+                  </span>
+                </Link>
+                <Link href='/delete' passHref>
+                  <span>
+                    <DeleteIcon />
+                  </span>
+                </Link>
+              </>
+            </div>
+          ) : (
+            <div className='mr-12'></div>
+          )}
         </div>
       </div>
       <div className='flex justify-center'>

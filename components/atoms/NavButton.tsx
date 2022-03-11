@@ -2,19 +2,15 @@ import React, { useState } from 'react';
 
 interface Props {
   text: string;
+  clicked: boolean;
 }
 
-export default function NavButton({ text }: Props) {
-  const [selected, setSelected] = useState(false);
-
+export default function NavButton({ text, clicked }: Props) {
   return (
     <div
       className={`${
-        selected ? 'text-typeqast-blue-form' : 'text-typeqast-gray-form'
+        clicked ? 'text-typeqast-blue-form' : 'text-typeqast-gray-form'
       } font-medium cursor-pointer`}
-      onClick={() => {
-        setSelected(!selected);
-      }}
     >
       {text}
     </div>
