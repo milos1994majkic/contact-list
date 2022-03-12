@@ -4,7 +4,7 @@ interface Props {
   addFav: boolean;
 }
 
-export default function HeratIconFilled() {
+export default function HeratFilledIcon() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

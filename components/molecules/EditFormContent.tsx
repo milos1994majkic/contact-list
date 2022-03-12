@@ -3,6 +3,7 @@ import { PhoneProps } from '../organisms/EditForm';
 import FormContent from './FormContent';
 
 interface Props {
+  id?: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function EditFormContent({
+  id,
   firstName,
   lastName,
   email,
@@ -17,6 +19,7 @@ export default function EditFormContent({
 }: Props) {
   return (
     <FormContent
+      id={id}
       fullName={firstName + ' ' + lastName}
       email={email}
       phones={phones}

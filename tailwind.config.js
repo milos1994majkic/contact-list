@@ -11,6 +11,7 @@ module.exports = {
         listItemImage: '75px',
         formImage: '175px',
         homePageSearch: '500px',
+        infoFormContent: '696px',
         homePageContent: '1216px',
       },
       height: {
