@@ -5,6 +5,7 @@ import EditIcon from '../icons/EditIcon';
 import DeleteIcon from '../icons/DeleteIcon';
 import HeratIconFilled from '../icons/HeratIconFilled';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface Props {
   contactPicture: string;
@@ -12,6 +13,8 @@ interface Props {
   contactId: string;
   contactFav: boolean;
 }
+
+// Object.assign(ovajIzNiza, tvojKojiJeUpdated)
 
 export default function ListItem({
   contactPicture,
@@ -58,7 +61,11 @@ export default function ListItem({
           {isHovered ? (
             <div className='flex'>
               <>
-                <Link href='/edit' passHref>
+                <Link
+                  href='/edit/[...contactId]'
+                  as={`/edit/${contactId}`}
+                  passHref
+                >
                   <span>
                     <EditIcon />
                   </span>
