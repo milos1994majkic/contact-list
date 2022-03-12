@@ -42,7 +42,7 @@ export default function ListItem({
         <div className='column itemCol15'>
           {contactFav ? <HeratIconFilled /> : <HeartIcon />}
         </div>
-        <Link href={`/info/${contactId}`}>
+        <Link href='/info/[...contactId]' as={`/info/${contactId}`} passHref>
           <div className='column itemCol60'>
             <div className='p-2 ml-6'>
               <div className='w-listItemImage h-listItemImage border-2 border-solid border-typeqast-listItem-image-gray rounded-full'>

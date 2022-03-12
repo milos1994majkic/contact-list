@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import CloseIcon from '../icons/CloseIcon';
+import DeleteIcon from '../icons/DeleteIcon';
 import MailIcon from '../icons/MailIcon';
 import PlusCircle from '../icons/PlusCircleIcon';
 import ReturnIcon from '../icons/ReturnIcon';
@@ -9,19 +10,28 @@ import UserIcon from '../icons/UserIcon';
 import { PhoneProps } from '../organisms/EditForm';
 
 interface Props {
+  id?: string;
   fullName?: string;
   email?: string;
   phones?: PhoneProps[];
 }
 
-export default function FormContent({ fullName, email, phones }: Props) {
+export default function FormContent({ id, fullName, email, phones }: Props) {
   return (
     <div className='flex flex-col space-y-5'>
-      <Link href='/'>
-        <div>
-          <ReturnIcon />
-        </div>
-      </Link>
+      <div className='flex justify-between'>
+        <Link href='/'>
+          <div>
+            <ReturnIcon />
+          </div>
+        </Link>
+        {id && (
+          <div className='flex'>
+            <p className='mr-3 text-typeqast-gray'>Delete</p>
+            <DeleteIcon />
+          </div>
+        )}
+      </div>
       <div className='border-t-2 border-typeqast-user-image-blue'>
         <div className='flex mt-4'>
           <UserIcon />
