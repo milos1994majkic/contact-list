@@ -20,7 +20,7 @@ export default function Picture({ contactPicture }: Props) {
         />
       </div>
       {contactPicture ? (
-        contactPicture
+        ''
       ) : (
         <div className='mt-user-image ml-user-image absolute z-10'>
           <UploadIcon />
