@@ -48,8 +48,15 @@ export default function Home(): JSX.Element {
               {allContacts
                 .filter((contact) => {
                   if (
-                    contact.firstName.includes(searchInput) ||
-                    contact.lastName.includes(searchInput)
+                    contact.firstName
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase()) ||
+                    contact.lastName
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase()) ||
+                    contact.email
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase())
                   )
                     return contact;
                 })

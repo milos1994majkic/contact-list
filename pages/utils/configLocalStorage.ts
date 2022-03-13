@@ -35,10 +35,13 @@ export const dataAPI = () => {
 
   const saveContact = (updatedContact: ContactsInterface) => {
     const allContacts = getAllContacts();
-    const contact = getById(updatedContact.id);
+    const contact = allContacts.find(
+      (contact) => contact.id === updatedContact.id,
+    );
 
     if (!contact) {
       allContacts.push(updatedContact);
+      saveAll(allContacts);
       return;
     }
 
