@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ContactsInterface } from '../../pages/utils/configLocalStorage';
 import CloseIcon from '../icons/CloseIcon';
 import DeleteIcon from '../icons/DeleteIcon';
 import MailIcon from '../icons/MailIcon';
@@ -14,9 +15,32 @@ interface Props {
   fullName?: string;
   email?: string;
   phones?: PhoneProps[];
+  submitted?: boolean;
+  submittedFn?: Function;
 }
 
-export default function FormContent({ id, fullName, email, phones }: Props) {
+export default function FormContent({
+  id,
+  fullName,
+  email,
+  phones,
+  submitted,
+  submittedFn,
+}: Props) {
+  const [fullNameInput, setFullNameInput] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [phonesNameInput, setPhonesNameInput] = useState('');
+  const [phonesLabelInput, setPhonesLabelInput] = useState('');
+
+  useEffect(() => {
+    submitted && submittedFn?.({
+      fullNameInput,
+      emailInput,
+      phonesNameInput,
+      phonesLabelInput,
+    });
+  }, [submitted]);
+
   return (
     <div className='flex flex-col space-y-5'>
       <div className='flex justify-between'>
@@ -44,6 +68,7 @@ export default function FormContent({ id, fullName, email, phones }: Props) {
         required
         placeholder={`${fullName ? fullName : 'Full Name'}`}
         className='border rounded border-1 border-typeqast-gray-form p-4 w-80'
+        onChange={(event) => setFullNameInput(event.target.value)}
       />
       <div className='flex border-t-2 border-typeqast-user-image-blue'>
         <div className='flex mt-4'>
@@ -57,6 +82,7 @@ export default function FormContent({ id, fullName, email, phones }: Props) {
         required
         placeholder={`${email ? email : 'Email'}`}
         className='border rounded border-1 border-typeqast-gray-form p-4 w-80'
+        onChange={(event) => setEmailInput(event.target.value)}
       />
       <div className='flex border-t-2 border-typeqast-user-image-blue'>
         <div className='flex mt-4'>
@@ -72,6 +98,7 @@ export default function FormContent({ id, fullName, email, phones }: Props) {
             required
             placeholder={`${p ? p.name : 'Number'}`}
             className='mr-4 border rounded border-1 border-typeqast-gray-form p-4 w-80'
+            onChange={(event) => setPhonesNameInput(event.target.value)}
           />
           <input
             id='cell'
@@ -79,6 +106,7 @@ export default function FormContent({ id, fullName, email, phones }: Props) {
             required
             placeholder={`${p ? p.label : 'Cell'}`}
             className='mr-4 border rounded border-1 border-typeqast-gray-form p-4 w-80'
+            onChange={(event) => setPhonesLabelInput(event.target.value)}
           />
           <CloseIcon />
         </div>
