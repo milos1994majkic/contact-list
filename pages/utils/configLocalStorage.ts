@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import contacts from '../../data/contacts.json';
 
 export interface ContactsInterface {
@@ -49,11 +50,21 @@ export const dataAPI = () => {
     saveAll(allContacts);
   };
 
+  const deleteContact = (contactId: string) => {
+    const allContacts = getAllContacts();
+    const newContacts = allContacts.filter(
+      (item: any) => item.id !== contactId,
+    );
+    localStorage.setItem(contactsKey, JSON.stringify(newContacts));
+    window.location.reload();
+  };
+
   return {
     getAllContacts,
     getAllFavs,
     getById,
     saveAll,
     saveContact,
+    deleteContact,
   };
 };

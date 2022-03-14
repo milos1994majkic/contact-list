@@ -21,9 +21,9 @@ export default function InfoForm({
   phones,
 }: Props) {
   return (
-    <div className='flex my-0 mx-auto w-fit mt-16'>
+    <div className='flex flex-col md:flex-row my-0 mx-auto w-fit mt-16'>
       <Picture contactPicture={profilePhoto} />
-      <div className='ml-10 mt-10'>
+      <div className='ml-0 md:ml-10 mt-10'>
         <InfoFormContent
           id={id}
           firstName={firstName}

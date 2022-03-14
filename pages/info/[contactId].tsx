@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/atoms/Header';
@@ -17,6 +18,11 @@ export default function info() {
 
   return (
     <>
+      <Head>
+        <title>Details</title>
+        <meta name='description' content='Browse a contact' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <Header />
       <InfoForm
         id={id}

@@ -5,6 +5,7 @@ import ListItem from '../components/molecules/ListItem';
 import Header from '../components/atoms/Header';
 import Navbar from '../components/molecules/Navbar';
 import SearchIcon from '../components/icons/SearchIcon';
+import Head from 'next/head';
 
 export default function Home(): JSX.Element {
   const [allContacts, setAllContacts] = useState([] as ContactsInterface[]);
@@ -18,8 +19,13 @@ export default function Home(): JSX.Element {
   }, [selectedButton, searchInput]);
   return (
     <>
+      <Head>
+        <title>All Contacts</title>
+        <meta name='description' content='Browse a list of contacts' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <Header />
-      <div className='flex flex-col my-0 mx-auto w-fit mt-16'>
+      <div className='w-9/12 flex flex-col my-0 mx-auto mt-16'>
         <Navbar
           selectedButton={selectedButton}
           setSelectedButton={setSelectedButton}
@@ -30,7 +36,7 @@ export default function Home(): JSX.Element {
               <input
                 id='search'
                 type='text'
-                className='w-homePageSearch mt-16 pl-16 border rounded border-1 border-typeqast-gray-form p-4 w-80 drop-shadow-xl focus:outline-none'
+                className='w-fit mx-4 sm:w-searchInput mt-16 pl-16 border rounded border-1 border-typeqast-gray-form p-4 drop-shadow-xl focus:outline-none'
                 onChange={(event) => {
                   setSearchInput(event.target.value);
                 }}
@@ -40,9 +46,9 @@ export default function Home(): JSX.Element {
               </div>
             </div>
           </div>
-          <div className='flex w-homePageContent my-0 mx-auto w-fit mt-16'>
+          <div className='flex my-0 mx-auto w-fit mt-16'>
             <div className='flex flex-wrap'>
-              <div className='flex-typeqast-flex'>
+              <div className='flex-flex-100 sm:flex-typeqast-flex'>
                 <CreateContact />
               </div>
               {allContacts
