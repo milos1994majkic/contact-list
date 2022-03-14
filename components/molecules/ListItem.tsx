@@ -4,7 +4,9 @@ import HeartIcon from '../icons/HeartIcon';
 import EditIcon from '../icons/EditIcon';
 import DeleteIcon from '../icons/DeleteIcon';
 import HeratIconFilled from '../icons/HeratIconFilled';
+import defaultPicture from '../../data/typeqast-upload-blue-75x75.png';
 import Link from 'next/link';
+import DeleteDialog from './DeleteDialog';
 
 interface Props {
   contactPicture: string;
@@ -20,6 +22,7 @@ export default function ListItem({
   contactFav,
 }: Props) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onMouseEnter = useCallback(() => {
     setIsHovered(true);
@@ -28,60 +31,61 @@ export default function ListItem({
     setIsHovered(false);
   }, [setIsHovered]);
   return (
-    <div
-      className={`border border-solid rounded-md border-typeqast-gray' hover:border-typeqast-blue w-listItem h-listItem p-3 m-4`}
-    >
+    <>
       <div
-        className='flex justify-between'
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        className={`border border-solid rounded-md border-typeqast-gray' hover:border-typeqast-blue w-listItem h-listItem p-3 m-4`}
       >
-        <div className='column itemCol15'>
-          {contactFav ? <HeratIconFilled /> : <HeartIcon />}
-        </div>
-        <Link href='/info/[...contactId]' as={`/info/${contactId}`} passHref>
-          <div className='column itemCol60'>
-            <div className='p-2 ml-6'>
-              <div className='w-listItemImage h-listItemImage border-2 border-solid border-typeqast-listItem-image-gray rounded-full'>
-                <Image
-                  src={contactPicture}
-                  alt='user photo'
-                  width={75}
-                  height={75}
-                  className='rounded-full'
-                />
+        <div
+          className='flex justify-between'
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+        >
+          <div className='column itemCol15'>
+            {contactFav ? <HeratIconFilled /> : <HeartIcon />}
+          </div>
+          <Link href='/info/[...contactId]' as={`/info/${contactId}`} passHref>
+            <div className='column itemCol60'>
+              <div className='p-2 ml-6'>
+                <div className='w-listItemImage h-listItemImage border-2 border-solid border-typeqast-listItem-image-gray rounded-full'>
+                  <Image
+                    src={contactPicture}
+                    alt='user photo'
+                    width={75}
+                    height={75}
+                    className='rounded-full'
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </Link>
-        <div className='column itemCol25'>
-          {isHovered ? (
-            <div className='flex'>
-              <>
-                <Link
-                  href='/edit/[...contactId]'
-                  as={`/edit/${contactId}`}
-                  passHref
-                >
-                  <span>
-                    <EditIcon />
-                  </span>
-                </Link>
-                <Link href='/delete' passHref>
-                  <span>
+          </Link>
+          <div className='column itemCol25'>
+            {isHovered ? (
+              <div className='flex'>
+                <>
+                  <Link
+                    href='/edit/[...contactId]'
+                    as={`/edit/${contactId}`}
+                    passHref
+                  >
+                    <span>
+                      <EditIcon />
+                    </span>
+                  </Link>
+                  <span onClick={() => setIsOpen(true)}>
                     <DeleteIcon />
                   </span>
-                </Link>
-              </>
-            </div>
-          ) : (
-            <div className='mr-12'></div>
-          )}
+                </>
+              </div>
+            ) : (
+              <div className='mr-12'></div>
+            )}
+          </div>
+        </div>
+        <div className='flex justify-center'>
+          <h1 className='capitalize text-typeqast-gray'>{contactText}</h1>
         </div>
       </div>
-      <div className='flex justify-center'>
-        <h1 className='capitalize text-typeqast-gray'>{contactText}</h1>
-      </div>
-    </div>
+      <DeleteDialog open={isOpen} setOpen={setIsOpen} contactId={contactId} />
+    </>
   );
 }

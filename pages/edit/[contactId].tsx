@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/atoms/Header';
@@ -13,10 +14,22 @@ export default function edit() {
     setUserContact(dataAPI().getById(id) || ({} as ContactsInterface));
   }, [router]);
 
-  const { firstName, lastName, profilePhoto, email, phones } = userContact;
+  const {
+    firstName,
+    lastName,
+    profilePhoto,
+    email,
+    phones,
+    favourite,
+  } = userContact;
 
   return (
     <>
+      <Head>
+        <title>Edit</title>
+        <meta name='description' content='Edit a contact' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <Header />
       <EditForm
         id={id}
@@ -24,6 +37,7 @@ export default function edit() {
         lastName={lastName}
         profilePhoto={profilePhoto}
         email={email}
+        favourite={favourite}
         phones={phones}
       />
     </>

@@ -13,6 +13,9 @@ module.exports = {
         homePageSearch: '500px',
         infoFormContent: '696px',
         homePageContent: '1216px',
+        searchInput: '30vw',
+        contentInput: '45vw',
+        contentInputSingle: '20rem',
       },
       height: {
         listItem: '153px',
@@ -30,6 +33,7 @@ module.exports = {
       },
       flex: {
         'typeqast-flex': '1 1 25%',
+        'flex-100': '1 1 100%',
       },
       margin: {
         'user-image': '75px',

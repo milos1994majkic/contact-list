@@ -38,11 +38,11 @@ export default function Form() {
   };
 
   return (
-    <div className='flex my-0 mx-auto w-fit mt-16'>
+    <div className='flex flex-col md:flex md:flex-row my-0 mx-auto w-fit mt-16'>
       <Picture contactPicture='' />
-      <div className='ml-10 mt-10'>
+      <div className='ml-0 md:ml-10 mt-10'>
         <FormContent submitted={submitted} submittedFn={formData} />
-        <div className='flex justify-between mt-12'>
+        <div className='flex flex-col md:flex md:flex-row justify-between mt-12'>
           <Link href='/'>
             <div>
               <FormButton text='Cancel' />
